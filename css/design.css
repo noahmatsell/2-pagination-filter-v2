@@ -117,3 +117,11 @@ body{
       background-color: #4ba6c3;
       color: #fff;
     }
+
+.hide{
+  display: none;
+}
+
+.warning{
+  color: #999;
+}
