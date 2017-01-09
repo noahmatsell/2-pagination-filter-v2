@@ -1,3 +1,14 @@
+/*
+Pagination and Content Filter
+Noah Matsell
+January 8, 2016
+Extra credit:
+1. Search component dynamically created with correct structure
+2. Search component filters student list to match query
+3. Warning message shown when no matches exist
+*/
+
+//Setting up some global vars
 var studentList = document.querySelector('ul.student-list');
 var warningMessage = document.createElement('p');
 warningMessage.classList.add("warning", "hide");
@@ -6,6 +17,14 @@ document.querySelector('div.page').insertBefore(warningMessage, studentList);
 
 //Function to render list of students
 var renderStudentList = function(fullList, page){
+	//Set current link as active
+	var linkList = document.querySelector('div.pagination ul');
+	var currentActive = linkList.querySelector('a.active');
+	if (currentActive){
+		currentActive.classList.remove('active');	
+	}
+	var activeLink = linkList.querySelectorAll('li a')[page-1];
+	activeLink.classList.add('active');
 	//Ensure page is an integer
 	var pageNumber = parseInt(page);
 	console.log("Paginate event: Page "+ pageNumber);
@@ -89,7 +108,7 @@ var findStudent = function(fullList){
 };
 //Function for adding link behaviour
 var bindLinkEvents = function(linkList){
-	var paginationLinkList = linkList.querySelector('ul')
+	var paginationLinkList = linkList.querySelector('ul');
 	//Loop through list, add click events for each link
 	for(i=0; i < paginationLinkList.childElementCount; i++){
 		var link = paginationLinkList.children[i].querySelector('a');
